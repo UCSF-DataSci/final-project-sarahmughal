@@ -1,5 +1,4 @@
-# Health Access Mazes  
-### Visualizing Structural Barriers to Healthcare and Food Access in the United States
+# Food Access Mazes: Visualizing Barriers to Healthy Food Access
 
 ## Overview
 
