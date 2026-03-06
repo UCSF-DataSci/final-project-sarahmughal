@@ -3,11 +3,21 @@
 
 ## Overview
 
-Access to healthcare and healthy food is influenced by a variety of structural factors, including poverty, insurance coverage, transportation access, and the availability of healthcare providers and grocery stores. These factors are often studied as part of the broader **social determinants of health**, but traditional statistical summaries can make disparities difficult to intuitively understand.
+This project explores a novel way to visualize disparities in access to healthy food by translating structural barriers into **algorithmically generated mazes**. Using indicators from the **USDA Food Access Research Atlas**, regions with greater barriers to food access generate more complex mazes, while regions with fewer barriers produce simpler ones.
 
-This project explores a novel way to represent these barriers by translating them into **algorithmically generated mazes**. Regions with greater structural barriers to health resources generate **more complex mazes**, while regions with fewer barriers produce simpler ones. The goal is to create a visualization that makes differences in health access more tangible and easier to interpret.
+The goal is to create an intuitive visualization that makes differences in neighborhood food environments easier to understand. This project combines **public health data analysis, algorithmic maze generation, and interactive visualization using Python and Streamlit.**
 
-This project combines **public health data analysis, algorithmic maze generation, and interactive visualization** using Python.
+---
+
+## Background and Motivation
+
+Food insecurity and limited access to affordable, nutritious food are strongly associated with poor dietary quality and an increased risk of diet-related diseases, including cardiovascular disease, diabetes, and certain cancers. These disparities disproportionately affect communities with lower socioeconomic status and racial and ethnic minority populations, who are more likely to live in under-resourced food environments.
+
+Research has increasingly focused on the role of **neighborhood food environments**, including the availability and accessibility of grocery stores and healthy food options, in shaping health outcomes. However, significant gaps remain in understanding the pathways that link food insecurity, neighborhood environments, and health disparities, as well as the most effective intervention strategies to address these issues.
+
+In response to these challenges, the National Institutes of Health (NIH), Centers for Disease Control and Prevention (CDC), and the United States Department of Agriculture (USDA) convened a workshop to evaluate the current state of research on food insecurity, neighborhood food environments, and nutrition-related health disparities.
+
+This project builds on this body of research by using indicators from the **USDA Food Access Research Atlas** to quantify barriers to healthy food access and represent them through algorithmically generated maze visualizations. By translating structural barriers into navigational complexity, the project aims to provide an intuitive representation of disparities in neighborhood food environments.
 
 ---
 
@@ -89,6 +99,7 @@ health_access_score = (
     0.15 * provider_shortage +
     0.15 * transportation_barrier
 )
+```
 
 Higher scores indicate greater barriers to healthcare and food access.
 
@@ -146,6 +157,8 @@ Generated output:
 ---
 
 ## Repository Structure
+
+```
 health-access-mazes/
 │
 ├── README.md
@@ -167,3 +180,13 @@ health-access-mazes/
 │
 └── presentation/
 └── slides.pdf
+```
+
+## References
+
+Odoms-Young, A., Brown, A. G. M., Agurs-Collins, T., & Glanz, K. (2022).  
+*Food Insecurity, Neighborhood Food Environment, and Health Disparities: State of the Science, Research Gaps and Opportunities.*  
+American Journal of Clinical Nutrition.
+
+USDA Economic Research Service.  
+*Food Access Research Atlas.*
