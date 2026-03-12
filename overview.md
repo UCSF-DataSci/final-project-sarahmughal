@@ -8,6 +8,17 @@ The goal is to create an intuitive visualization that makes differences in neigh
 
 ---
 
+## Live App
+
+**You can explore the interactive visualization here:** https://your-app-name.streamlit.app
+
+The app allows users to:
+
+- Explore food access barriers by region
+- Generate algorithmic maze visualizations representing structural barriers
+- View state-level comparisons
+- Compare food access scores with chronic disease indicators
+
 ## Background and Motivation
 
 Food insecurity and limited access to affordable, nutritious food are strongly associated with poor dietary quality and an increased risk of diet-related diseases, including cardiovascular disease, diabetes, and certain cancers. These disparities disproportionately affect communities with lower socioeconomic status and racial and ethnic minority populations, who are more likely to live in under-resourced food environments.
