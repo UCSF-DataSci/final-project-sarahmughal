@@ -192,6 +192,8 @@ Some key design choices include:
 
 ## Repository Structure
 
+```bash
+
 final-project-sarahmughal/
 
 ├── streamlit_app.py
@@ -217,6 +219,8 @@ final-project-sarahmughal/
 
 └── references/
     └── Food Insecurity, Neighborhood Food Environment, and Health Disparities.pdf
+
+```
 
 ---
 
