@@ -162,13 +162,16 @@ health-access-mazes/
 │
 ├── README.md
 │
+├── references/
+│ ├── Food Insecurity, Neighborhood Food Environment, and Health Disparities- State of the Science, Research Gaps and Opportunities.pdf
+│
 ├── data/
-│ ├── raw_data.csv
+│ ├── FoodAccessResearchAtlasData2019.csv
 │ └── processed_data.csv
 │
 ├── scripts/
-│ ├── data_processing.py
-│ ├── scoring_model.py
+│ ├── clean_data.py
+│ ├── create_score.py
 │ └── maze_generator.py
 │
 ├── app/
@@ -189,3 +192,7 @@ American Journal of Clinical Nutrition.
 
 USDA Economic Research Service.  
 *Food Access Research Atlas.*
+
+Centers for Disease Control and Prevention. Adult Obesity Prevalence Maps. U.S. Dept of Health and Human Services; 2025.
+
+Medicare Data: https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-geographic-comparisons/medicare-geographic-variation-by-national-state-county/data?query=%7B%22filters%22%3A%7B%22rootConjunction%22%3A%7B%22label%22%3A%22And%22%2C%22value%22%3A%22AND%22%7D%2C%22list%22%3A%5B%5D%7D%2C%22keywords%22%3A%22%22%2C%22offset%22%3A40%2C%22limit%22%3A10%2C%22sort%22%3A%7B%22sortBy%22%3A%22BENE_GEO_DESC%22%2C%22sortOrder%22%3A%22DESC%22%7D%2C%22columns%22%3A%5B%5D%7D
