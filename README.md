@@ -12,7 +12,7 @@ The goal is to create a visualization that makes differences in neighborhood foo
 
 Interactive App:  
 
-**(Add Streamlit deployment link here)**
+**[(Add Streamlit deployment link here)](https://food-access-mazes.streamlit.app/)**
 
 The app allows users to:
 
