@@ -10,9 +10,7 @@ The goal is to create a visualization that makes differences in neighborhood foo
 
 ## Live App
 
-Interactive App:  
-
-**[(Add Streamlit deployment link here)](https://food-access-mazes.streamlit.app/)**
+Interactive App: **[(food-access-mazes.streamlit.app)](https://food-access-mazes.streamlit.app/)**
 
 The app allows users to:
 
