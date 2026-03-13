@@ -25,6 +25,9 @@ This project combines two public datasets. The original datasets were downloaded
 | USDA Food Access Research Atlas | 72,531 | 147 | Census tracts |
 | Medicare Geographic Variation Dataset | 33,639 | 247 | Multiple geographic levels (county, state, national) |
 
+Summary statistics and dataset dimensions were calculated using `scripts/descriptivestats.py`.  
+The datasets were merged using `scripts/merge_food_health.py`.
+
 ---
 
 ### USDA Food Access Research Atlas
@@ -94,6 +97,9 @@ A **composite barrier score** was created using normalized indicators representi
 
 Each variable was normalized before being combined into a single composite score. Higher scores indicate greater structural barriers to accessing affordable and nutritious food.
 
+Scripts used:
+- scripts/create_score.py
+  
 ---
 
 ### 3. Maze Generation
@@ -108,7 +114,6 @@ Maze properties influenced by the score include:
 
 Implementation:
 - scripts/maze_generator.py
-
 
 ---
 
@@ -207,8 +212,6 @@ final-project-sarahmughal/
 │   └── Food Insecurity, Neighborhood Food Environment, and Health Disparities- State of the Science, Research Gaps and Opportunities.pdf
 ├── requirements.txt
 ├── scripts
-│   ├── __pycache__
-│   │   └── maze_generator.cpython-313.pyc
 │   ├── clean_data.py
 │   ├── clean_medicare_data.py
 │   ├── clean_medicare_state_data.py
