@@ -35,23 +35,15 @@ Provides census tract–level indicators related to food access and socioeconomi
 
 **Key variables used:**
 
-| Feature | Description |
-|------|------|
-| `lapop1share` | Population living more than 1 mile from a supermarket |
-| `lalowi1share` | Low-income population far from supermarkets |
-| `PovertyRate` | Population below the poverty line |
-| `MedianFamilyIncome` | Median family income |
-| `vehicle_barrier_rate` | Households without vehicle access |
+| Variable | Description | Mean | Min | Max |
+|---|---|---|---|---|
+| `lapop1share` | Population living more than 1 mile from a supermarket | 53.97 | 0.00 | 100.00 |
+| `lalowi1share` | Low-income population far from supermarkets | 16.16 | 0.00 | 98.05 |
+| `PovertyRate` | Population below the poverty line | 13.70 | 0.00 | 99.50 |
+| `MedianFamilyIncome` | Median family income | 78,216.87 | 2,499.00 | 250,001.00 |
+| `vehicle_barrier_rate` | Households without vehicle access | 0.0245 | 0.00 | 0.6699 |
 
-**Descriptive statistics:**
-
-| Variable | Mean | Min | Max |
-|------|------|------|------|
-| `lapop1share` | 53.97 | 0.00 | 100.00 |
-| `lalowi1share` | 16.16 | 0.00 | 98.05 |
-| `PovertyRate` | 13.70 | 0.00 | 99.50 |
-| `MedianFamilyIncome` | 78,216.87 | 2,499.00 | 250,001.00 |
-| `vehicle_barrier_rate` | 0.0245 | 0.00 | 0.6699 |
+Across census tracts, the average share of residents living more than one mile from a supermarket is **53.97%**, with values ranging from **0% to 100%**. These indicators capture variation in geographic food access, poverty, income, and transportation barriers across communities.
 
 Source:  
 https://www.ers.usda.gov/data-products/food-access-research-atlas/
@@ -62,27 +54,17 @@ https://www.ers.usda.gov/data-products/food-access-research-atlas/
 
 Provides healthcare utilization and chronic condition indicators used to examine relationships between food access barriers and chronic disease burden.
 
-**Variables used:**
+**Key variables used (state-level, 2023):**
 
-| Variable | Description |
-|------|------|
-| `PQI03_DBTS_AGE_LT_65` | Diabetes admissions |
-| `PQI05_COPD_ASTHMA_AGE_40_64` | COPD/asthma admissions |
-| `PQI07_HYPRTNSN_AGE_LT_65` | Hypertension admissions |
-| `PQI15_ASTHMA_AGE_LT_40` | Asthma admissions (<40) |
-| `BENES_TOTAL_CNT` | Medicare beneficiaries |
+| Variable | Description | Mean | Min | Max |
+|---|---|---|---|---|
+| `PQI03_DBTS_AGE_LT_65` | Diabetes admissions | 607.02 | 267 | 1020 |
+| `PQI05_COPD_ASTHMA_AGE_40_64` | COPD/asthma admissions | 457.98 | 162 | 890 |
+| `PQI07_HYPRTNSN_AGE_LT_65` | Hypertension admissions | 214.85 | 72 | 878 |
+| `PQI15_ASTHMA_AGE_LT_40` | Asthma admissions (<40) | 72.83 | 0 | 181 |
+| `BENES_TOTAL_CNT` | Medicare beneficiaries | 1,300,932 | 21,608 | 7,080,940 |
 
-Descriptive statistics are calculated after filtering the dataset to **2023 observations** and aggregating metrics at the **state level**.
-
-**Descriptive statistics (state-level):**
-
-| Variable | Mean | Min | Max |
-|------|------|------|------|
-| `PQI03_DBTS_AGE_LT_65` | 607.02 | 267 | 1020 |
-| `PQI05_COPD_ASTHMA_AGE_40_64` | 457.98 | 162 | 890 |
-| `PQI07_HYPRTNSN_AGE_LT_65` | 214.85 | 72 | 878 |
-| `PQI15_ASTHMA_AGE_LT_40` | 72.83 | 0 | 181 |
-| `BENES_TOTAL_CNT` | 1,300,932 | 21,608 | 7,080,940 |
+After filtering to **2023 observations** and aggregating metrics at the **state level**, the dataset shows an average of **607 diabetes-related admissions among Medicare beneficiaries under age 65**, with values ranging from **267 to 1,020 across states**. These indicators provide context for variation in chronic disease burden that can be compared alongside food access barriers.
 
 Source:  
 https://data.cms.gov/
