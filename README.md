@@ -132,11 +132,11 @@ Through the application, users can:
 
 The Streamlit application allows users to explore food access barriers interactively. The interface includes:
 
-- a **region selector** for choosing a county or state  
-- a **generated maze visualization** representing food access difficulty  
-- **summary statistics** describing key food access indicators  
-- **chronic condition indicators** from the Medicare dataset  
-- **state rankings and comparison plots** showing broader patterns across regions  
+- A **region selector** for choosing a county or state  
+- A **generated maze visualization** representing food access difficulty  
+- **Summary statistics** describing key food access indicators  
+- **Chronic condition indicators** from the Medicare dataset  
+- **State rankings and comparison plots** showing broader patterns across regions  
 
 ### Example Region
 
@@ -146,9 +146,9 @@ Barrier Level: **High**
 
 In this example, the high food access score reflects several structural barriers that make accessing healthy food more difficult. Major contributing factors may include:
 
-- high poverty rates  
-- limited access to nearby supermarkets  
-- transportation barriers such as low vehicle availability  
+- High poverty rates  
+- Limited access to nearby supermarkets  
+- Transportation barriers such as low vehicle availability  
 
 These conditions result in a **larger and more complex maze**, visually representing the difficulty residents may face when trying to access healthy food options.
 
