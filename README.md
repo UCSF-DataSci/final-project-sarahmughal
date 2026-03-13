@@ -10,9 +10,7 @@ The idea was partly inspired by *Food Insecurity, Neighborhood Food Environment,
 
 ---
 
-## Live App
-
-Interactive App: **[food-access-mazes.streamlit.app](https://food-access-mazes.streamlit.app/)**
+## Live App: **[food-access-mazes.streamlit.app](https://food-access-mazes.streamlit.app/)**
 
 This app allows users to explore food access barriers by region, generate maze visualizations based on barrier scores, compare states, and examine relationships between food access and chronic disease indicators.
 
