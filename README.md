@@ -2,11 +2,12 @@
 
 ## Overview
 
-Limited access to affordable, nutritious food is associated with poorer diet quality and higher risk of diseases such as diabetes and cardiovascular disease. These disparities often affect communities with fewer socioeconomic resources and limited transportation access. Public health research typically measures these barriers using indicators such as poverty rates, distance to grocery stores, and vehicle availability, but these measures are often presented through tables or maps that can be difficult to interpret.
+Limited access to affordable, nutritious food is linked to poorer diet quality and higher risk of diseases such as diabetes and cardiovascular disease, particularly in communities with fewer socioeconomic resources and limited transportation. Public health research often measures these barriers using indicators such as poverty rates, distance to grocery stores, and vehicle availability, but these metrics are typically presented in tables or maps that can be difficult to interpret.
 
-This project explores a different way to visualize disparities in healthy food access by translating structural barriers into **algorithmically generated mazes**. I created a maze for each county in the United States where maze difficulty is determined by a composite score based on indicators such as supermarket distance, poverty rate, and transportation barriers. Counties with greater barriers generate larger and more complex mazes, while those with fewer barriers produce simpler ones. The goal is to provide a more intuitive way to explore differences in neighborhood food environments using public health data, procedural maze generation, and an interactive **Python + Streamlit** interface.
+This project explores a different way to visualize these disparities by translating structural barriers into **algorithmically generated mazes**. I created a maze for each U.S. county where difficulty is determined by a composite score based on indicators such as supermarket distance, poverty, and transportation barriers. Counties with greater barriers generate larger and more complex mazes, providing a more intuitive way to explore differences in neighborhood food environments through an interactive **Python and Streamlit** application.
 
-The idea was partly inspired by *Food Insecurity, Neighborhood Food Environment, and Health Disparities: State of the Science, Research Gaps and Opportunities* (Odoms-Young et al., 2024), which highlights how structural factors such as poverty, transportation, and geographic food access contribute to health disparities. This work motivated the use of an alternative visual metaphor to represent the complexity of these barriers.
+The idea was partly inspired by *Food Insecurity, Neighborhood Food Environment, and Health Disparities: State of the Science, Research Gaps and Opportunities* (Odoms-Young et al., 2024), which highlights how structural factors like poverty, transportation, and geographic food access contribute to health disparities.
+
 ---
 
 ## Live App
