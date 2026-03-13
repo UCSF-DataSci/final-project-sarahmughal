@@ -1,4 +1,4 @@
-# Food Access Mazes: Visualizing Barriers to Healthy Food Access
+# Navigating the Food Desert: Visualizing Barriers to Healthy Food Access in the U.S.
 
 ## Overview
 
