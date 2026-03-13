@@ -2,16 +2,16 @@ import pandas as pd
 
 df = pd.read_csv("data/Medicare_GV_by_National_State_County_2023.csv", low_memory=False)
 
-# Keep county rows
+# keep county rows
 df = df[df["BENE_GEO_LVL"] == "County"]
 
-# Keep all ages
+# keep all ages
 df = df[df["BENE_AGE_LVL"] == "All"]
 
-# Keep 2023
+# keep 2023
 df = df[df["YEAR"] == 2023]
 
-# Create county FIPS
+# create county FIPS
 df["county_fips"] = (
     pd.to_numeric(df["BENE_GEO_CD"], errors="coerce")
     .astype("Int64")
@@ -19,7 +19,7 @@ df["county_fips"] = (
     .str.zfill(5)
 )
 
-# Clean county names (remove "AK-" etc)
+# clean county names (remove "AK-" etc)
 df["County"] = df["BENE_GEO_DESC"].str.split("-", n=1).str[1]
 
 cols = [

@@ -2,42 +2,37 @@
 
 ## Overview
 
-This project explores a different way to visualize disparities in access to healthy food. Instead of relying only on traditional charts or tables, structural barriers are translated into **algorithmically generated mazes**. Regions with greater barriers to food access generate larger and more complex mazes, while regions with fewer barriers produce simpler ones.
+Limited access to affordable, nutritious food is associated with poorer diet quality and higher risk of diseases such as diabetes and cardiovascular disease. These disparities often affect communities with fewer socioeconomic resources and limited transportation access. Public health research typically measures these barriers using indicators such as poverty rates, distance to grocery stores, and vehicle availability, but these measures are often presented through tables or maps that can be difficult to interpret.
 
-The goal is to create a visualization that makes differences in neighborhood food environments easier to understand. The project combines **public health data analysis, procedural maze generation, and interactive visualization using Python and Streamlit.**
+This project explores a different way to visualize disparities in healthy food access by translating structural barriers into **algorithmically generated mazes**. I created a maze for each county in the United States where maze difficulty is determined by a composite score based on indicators such as supermarket distance, poverty rate, and transportation barriers. Counties with greater barriers generate larger and more complex mazes, while those with fewer barriers produce simpler ones. The goal is to provide a more intuitive way to explore differences in neighborhood food environments using public health data, procedural maze generation, and an interactive **Python + Streamlit** interface.
 
+The idea was partly inspired by *Food Insecurity, Neighborhood Food Environment, and Health Disparities: State of the Science, Research Gaps and Opportunities* (Odoms-Young et al., 2024), which highlights how structural factors such as poverty, transportation, and geographic food access contribute to health disparities. This work motivated the use of an alternative visual metaphor to represent the complexity of these barriers.
 ---
 
 ## Live App
 
-Interactive App: **[(food-access-mazes.streamlit.app)](https://food-access-mazes.streamlit.app/)**
+Interactive App: **[food-access-mazes.streamlit.app](https://food-access-mazes.streamlit.app/)**
 
-The app allows users to:
-
-- Explore food access barriers by region  
-- Generate maze visualizations based on barrier scores  
-- Compare states  
-- View relationships between food access and chronic disease indicators  
-
----
-
-## Background
-
-Limited access to affordable, nutritious food is associated with poorer diet quality and increased risk of diseases such as diabetes and cardiovascular disease. These disparities often affect communities with lower socioeconomic resources and limited transportation access.
-
-Public health research typically measures these barriers using indicators such as poverty rates, distance to grocery stores, and vehicle availability. However, these indicators are usually presented in statistical tables or maps. This project explores whether structural barriers can instead be represented through **navigational complexity**, using mazes as a visual metaphor.
+This app allows users to explore food access barriers by region, generate maze visualizations based on barrier scores, compare states, and examine relationships between food access and chronic disease indicators.
 
 ---
 
 ## Data Sources
 
-This project combines two public datasets.
+This project combines two public datasets. The original datasets were downloaded in their raw form before any cleaning or filtering.
+
+| Dataset | Rows | Columns | Unit of Observation |
+|------|------|------|------|
+| USDA Food Access Research Atlas | 72,531 | 147 | Census tracts |
+| Medicare Geographic Variation Dataset | 33,639 | 247 | Multiple geographic levels (county, state, national) |
+
+---
 
 ### USDA Food Access Research Atlas
 
-Provides census-tract level indicators related to food access and socioeconomic conditions.
+Provides census tract–level indicators related to food access and socioeconomic conditions across the United States.
 
-Key variables used:
+**Key variables used:**
 
 | Feature | Description |
 |------|------|
@@ -47,6 +42,16 @@ Key variables used:
 | `MedianFamilyIncome` | Median family income |
 | `vehicle_barrier_rate` | Households without vehicle access |
 
+**Descriptive statistics:**
+
+| Variable | Mean | Min | Max |
+|------|------|------|------|
+| `lapop1share` | 53.97 | 0.00 | 100.00 |
+| `lalowi1share` | 16.16 | 0.00 | 98.05 |
+| `PovertyRate` | 13.70 | 0.00 | 99.50 |
+| `MedianFamilyIncome` | 78,216.87 | 2,499.00 | 250,001.00 |
+| `vehicle_barrier_rate` | 0.0245 | 0.00 | 0.6699 |
+
 Source:  
 https://www.ers.usda.gov/data-products/food-access-research-atlas/
 
@@ -54,9 +59,9 @@ https://www.ers.usda.gov/data-products/food-access-research-atlas/
 
 ### Medicare Geographic Variation Dataset (CMS)
 
-Provides healthcare utilization and chronic condition indicators.
+Provides healthcare utilization and chronic condition indicators used to examine relationships between food access barriers and chronic disease burden.
 
-Variables used:
+**Variables used:**
 
 | Variable | Description |
 |------|------|
@@ -65,6 +70,18 @@ Variables used:
 | `PQI07_HYPRTNSN_AGE_LT_65` | Hypertension admissions |
 | `PQI15_ASTHMA_AGE_LT_40` | Asthma admissions (<40) |
 | `BENES_TOTAL_CNT` | Medicare beneficiaries |
+
+Descriptive statistics are calculated after filtering the dataset to **2023 observations** and aggregating metrics at the **state level**.
+
+**Descriptive statistics (state-level):**
+
+| Variable | Mean | Min | Max |
+|------|------|------|------|
+| `PQI03_DBTS_AGE_LT_65` | 607.02 | 267 | 1020 |
+| `PQI05_COPD_ASTHMA_AGE_40_64` | 457.98 | 162 | 890 |
+| `PQI07_HYPRTNSN_AGE_LT_65` | 214.85 | 72 | 878 |
+| `PQI15_ASTHMA_AGE_LT_40` | 72.83 | 0 | 181 |
+| `BENES_TOTAL_CNT` | 1,300,932 | 21,608 | 7,080,940 |
 
 Source:  
 https://data.cms.gov/
@@ -75,45 +92,38 @@ https://data.cms.gov/
 
 ### 1. Data Cleaning
 
-Raw datasets were cleaned using **Python and pandas**.
-
-Processing steps include:
-
-- filtering geographic levels and years  
-- cleaning county and state identifiers  
-- converting values to numeric format  
-- exporting processed datasets for analysis  
+Raw datasets were cleaned using Python and the pandas library. The processing steps included filtering the data by geographic level and year, cleaning county and state identifiers, converting variables to numeric format where necessary, and exporting the processed datasets for downstream analysis.
 
 Scripts used:
 - scripts/clean_data.py
 - scripts/clean_medicare_data.py
 - scripts/clean_medicare_state_data.py
 
-
 ---
 
 ### 2. Food Access Score
 
-A **composite barrier score** was created using normalized indicators related to:
+A **composite barrier score** was created using normalized indicators representing structural barriers to accessing healthy food. The score combines several socioeconomic and geographic factors:
 
-- food access  
-- poverty  
-- transportation barriers  
-- income  
+- **Food access:** share of the population living far from supermarkets  
+- **Low-income food access:** share of low-income residents with limited grocery store access  
+- **Poverty:** proportion of residents living below the federal poverty line  
+- **Transportation barriers:** share of households without reliable vehicle access  
+- **Income:** median family income (inverted to reflect economic disadvantage)
 
-Higher scores indicate greater structural barriers to healthy food access.
+Each variable was normalized before being combined into a single composite score. Higher scores indicate greater structural barriers to accessing affordable and nutritious food.
 
 ---
 
 ### 3. Maze Generation
 
-Food access scores are translated into maze complexity using a procedural maze generator.
+Food access scores are translated into maze complexity using a procedural maze generation algorithm. Regions with higher barrier scores produce larger and more difficult mazes, creating a visual metaphor for the difficulty of navigating local food environments.
 
-Maze properties affected by the score include:
+Maze properties influenced by the score include:
 
-- maze size  
-- branching complexity  
-- number of dead ends  
+- **Maze size:** higher barrier scores generate larger mazes with longer paths  
+- **Branching complexity:** more structural barriers increase the number of branching paths and decision points  
+- **Number of dead ends:** regions with higher barriers contain more dead ends, representing obstacles that make reaching healthy food more difficult
 
 Implementation:
 - scripts/maze_generator.py
@@ -123,38 +133,41 @@ Implementation:
 
 ### 4. Visualization
 
-The final visualization is built using **Streamlit**.
+The final visualization is built using **Streamlit**, allowing users to interactively explore food access barriers and their relationship with health indicators across regions.
 
-Users can:
+Through the application, users can:
 
-- select regions  
-- view food access indicators  
-- generate a maze representing structural barriers  
-- compare states  
-- explore correlations with health metrics  
+- **Select regions:** choose a state or county to examine local food access conditions  
+- **View food access indicators:** explore key socioeconomic and geographic variables contributing to the barrier score  
+- **Generate a maze visualization:** see a maze whose complexity reflects the structural barriers to accessing healthy food  
+- **Compare states:** view rankings and patterns across states based on average food access scores  
+- **Explore correlations with health metrics:** examine relationships between food access barriers and chronic condition indicators such as diabetes and hypertension
 
 ---
 
 ## Example Output
 
-Example interface features include:
+The Streamlit application allows users to explore food access barriers interactively. The interface includes:
 
-- region selector  
-- generated maze visualization  
-- region summary statistics  
-- chronic condition indicators  
-- state rankings and comparison plots  
+- a **region selector** for choosing a county or state  
+- a **generated maze visualization** representing food access difficulty  
+- **summary statistics** describing key food access indicators  
+- **chronic condition indicators** from the Medicare dataset  
+- **state rankings and comparison plots** showing broader patterns across regions  
 
-Example interpretation:
-- Region: Holmes County, Mississippi
-- Food Access Score: 0.81
-- Barrier Level: High
+### Example Region
 
-Major contributing barriers may include:
+Region: **Holmes County, Mississippi**  
+Food Access Score: **0.81**  
+Barrier Level: **High**
 
-- high poverty  
-- limited supermarket access  
-- transportation barriers  
+In this example, the high food access score reflects several structural barriers that make accessing healthy food more difficult. Major contributing factors may include:
+
+- high poverty rates  
+- limited access to nearby supermarkets  
+- transportation barriers such as low vehicle availability  
+
+These conditions result in a **larger and more complex maze**, visually representing the difficulty residents may face when trying to access healthy food options.
 
 ---
 
@@ -163,7 +176,7 @@ Major contributing barriers may include:
 Install dependencies:
 
 ```bash
-pip install streamlit pandas altair matplotlib numpy
+pip install requirements.txt
 ```
 
 Run the Streamlit app:
@@ -176,15 +189,15 @@ streamlit run streamlit_app.py
 
 ## Design Decisions
 
-Some key design choices include:
+Several design choices were made to balance interpretability, usability, and project scope.
 
-- **Composite score** — simplifies multiple indicators into one metric, though it may hide variation across individual variables.
+- **Composite score:** multiple indicators related to food access, poverty, income, and transportation were normalized and combined into a single metric. This simplifies interpretation and visualization, though it may hide variation across individual variables.
 
-- **State-level health metrics** — used for easier comparison and fewer missing values.
+- **State-level health metrics:** Medicare health indicators were analyzed at the state level rather than the county level to reduce missing values and simplify comparisons across regions.
 
-- **Maze metaphor** — provides an intuitive representation of structural barriers but is not intended as a formal statistical model.
+- **Maze metaphor:** maze complexity is used as a visual metaphor for structural barriers to accessing healthy food. This approach was inspired by narrative data visualizations such as those created by **The Pudding** (https://www.pudding.cool/), which often translate complex datasets into interactive visual experiences.
 
-- **Streamlit interface** — chosen for quick development and interactive exploration.
+- **Streamlit interface:** Streamlit was chosen to build an interactive application quickly, allowing users to explore regions, visualize barrier scores, and examine relationships between food access and health indicators.
 
 ---
 
@@ -194,29 +207,35 @@ Some key design choices include:
 
 final-project-sarahmughal/
 
-├── streamlit_app.py
+.
 ├── README.md
-
-├── assets/
+├── assets
 │   └── desert.png
-
-├── data/
+├── data
 │   ├── FoodAccessResearchAtlasData2019.csv
 │   ├── Medicare_GV_by_National_State_County_2023.csv
+│   ├── descriptive_statistics.md
 │   ├── food_access_with_scores.csv
-│   ├── medicare_state_metrics.csv
-│   └── processed_food_access.csv
-
-├── scripts/
+│   ├── food_health_combined.csv
+│   ├── medicare_chronic_conditions.csv
+│   ├── medicare_county_metrics.csv
+│   └── medicare_state_metrics.csv
+├── presentation
+│   └── food-access-mazes.pdf
+├── references
+│   └── Food Insecurity, Neighborhood Food Environment, and Health Disparities- State of the Science, Research Gaps and Opportunities.pdf
+├── requirements.txt
+├── scripts
+│   ├── __pycache__
+│   │   └── maze_generator.cpython-313.pyc
 │   ├── clean_data.py
 │   ├── clean_medicare_data.py
 │   ├── clean_medicare_state_data.py
 │   ├── create_score.py
-│   ├── merge_food_health.py
-│   └── maze_generator.py
-
-└── references/
-    └── Food Insecurity, Neighborhood Food Environment, and Health Disparities.pdf
+│   ├── descriptivestats.py
+│   ├── maze_generator.py
+│   └── merge_food_health.py
+└── streamlit_app.py
 
 ```
 
